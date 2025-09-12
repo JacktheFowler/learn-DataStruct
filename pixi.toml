@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Jack Fowler <sxw2830893287@gmail.com>"]
+channels = ["conda-forge"]
+name = "learn-DataStruct"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = ">=3.13.7,<3.14"
