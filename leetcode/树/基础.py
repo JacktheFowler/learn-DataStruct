@@ -98,6 +98,22 @@ class BinarySearchTree(TreeNode):
             self.remove(tmp.val)
             cur.val=tmp.val
 
+def BuildTree(preorder:list, inorder:list):
+    # 分治法分别构建左右子树 使用经典左右指针和当前节点
+    def dfs(preorder:list, inorder_map:dict, i, l, r):
+        if r-l<0:
+            return 
+        root=TreeNode(preorder[i])
+        # m为中序遍历的根节点索引
+        m=inorder_map(preorder[i])
+        root.left=dfs(preorder, inorder_map, i+1, l, m-1)
+        root.right=dfs(preorder, inorder_map, i+1+m-l, m+1, r)
+        return root
+    
+    inorder_map={v:k for k, v in enumerate(inorder)}
+    root=dfs(preorder, inorder_map, 0, 0, len(inorder_map)-1)
+    return root
+
 if __name__ == "__main__":
     tree = [TreeNode(i) for i in range(1, 8)]
     root = tree[0]
